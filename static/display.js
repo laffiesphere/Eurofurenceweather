@@ -267,6 +267,7 @@ function drawTimeline() {
     labelEvery: 1,
     markNow: true,
     values: true,
+    temperatures: true,
     selected: picked,
     // No handler means renderStrip leaves the columns inert: no tabindex, no
     // role="button", and .is-pickable off, so the hover and pointer styles go
