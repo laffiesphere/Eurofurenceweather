@@ -148,6 +148,7 @@ window.EFW = (function () {
    *                  onSelect   - called with (entry, index) when a bar is picked
    *                  selected   - ISO time of the bar to show as picked
    *                  emptyLabel - tooltip for an hour with no forecast
+   *                  temperatures - draw the rounded temperature inside each bar
    */
   function renderStrip(host, series, options = {}) {
     const {
@@ -157,6 +158,7 @@ window.EFW = (function () {
       onSelect = null,
       selected = null,
       emptyLabel = 'No data',
+      temperatures = false,
     } = options;
     host.innerHTML = '';
     if (!series || !series.length) {
@@ -229,6 +231,17 @@ window.EFW = (function () {
       // An empty slot is drawn as the full height of the chart so it reads as
       // "we do not know", not as a score of nearly zero.
       bar.style.height = missing ? '100%' : `${Math.max(4, score * 10)}%`;
+
+      if (temperatures && !missing) {
+        const temperatureLabel = document.createElement('span');
+        temperatureLabel.className = 'fsi-temperature';
+        temperatureLabel.textContent =
+          entry.temperature === null || entry.temperature === undefined
+            ? '–'
+            : `${Math.round(entry.temperature)}°`;
+        temperatureLabel.style.color = contrastText(entry.color || scoreColor(score));
+        bar.append(temperatureLabel);
+      }
 
       if (options.values && !missing) {
         const value = document.createElement('b');

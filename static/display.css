@@ -414,6 +414,17 @@ body {
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
+.fsi-temperature {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.45vh;
+  text-align: center;
+  font-size: clamp(0.68rem, 1.65vh, 1.15rem);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
 /* Too short a bar to sit inside: float the number just above it. */
 .fsi-value.outside { top: auto; bottom: calc(100% + 0.3vh); color: var(--text); }
 
